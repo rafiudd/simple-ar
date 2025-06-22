@@ -1,7 +1,7 @@
 import './App.css';
 import './styles.css';
 import '@google/model-viewer/dist/model-viewer.min.js';
-import hand from './assets/CHAIR.glb';
+import hand from './assets/6_22_2025.glb';
 import chair from './assets/coconchair.usdz';
 import QRCode from 'qrcode.react'
 
@@ -46,7 +46,6 @@ function App() {
     return (
       <div className={App}>
         <model-viewer className="modelviewer" style={modelViewer} src={hand}
-          ios-src="https://modelviewer.dev/shared-assets/models/Astronaut.usdz"
           alt="A 3D model of an astronaut"
           ar
           auto-rotate
