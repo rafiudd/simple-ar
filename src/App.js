@@ -57,7 +57,7 @@ function App() {
   return (
     <>
       {isMobile ? (
-        <ModelWithQRCode src={cake} iosSrc={cake} />
+        <ModelWithQRCode src={cake} iosSrc={chair} />
       ) : (
         <>
           <ModelWithQRCode src={cake} />
