@@ -1,72 +1,71 @@
 import './App.css';
 import './styles.css';
 import '@google/model-viewer/dist/model-viewer.min.js';
-import hand from './assets/6_22_2025.glb';
+
+import cake from './assets/cake2.glb';
+import minum from './assets/minum.glb';
 import chair from './assets/coconchair.usdz';
-import QRCode from 'qrcode.react'
+
+import QRCode from 'qrcode.react';
+
+const modelViewerStyle = {
+  backgroundColor: "#eee",
+  overflowX: "hidden",
+  posterColor: "#eee",
+  width: 400,
+  height: 300,
+  borderRadius: 10,
+  marginTop: 40,
+  marginLeft: 40,
+};
+
+const ModelWithQRCode = ({ src, iosSrc }) => (
+  <div className="App">
+    <model-viewer
+      className="modelviewer"
+      style={modelViewerStyle}
+      src={src}
+      ios-src={iosSrc}
+      alt="3D model"
+      ar
+      auto-rotate
+      camera-controls
+    >
+      {iosSrc && (
+        <button slot="ar-button" className="arbutton">
+          View in your space
+        </button>
+      )}
+    </model-viewer>
+    <div style={{ display: 'flex', marginLeft: 50 }}>
+      <QRCode
+        value={window.location.href}
+        size={128}
+        bgColor="#ffffff"
+        fgColor="#000000"
+        level="H"
+        includeMargin={true}
+      />
+      <h5 style={{ marginTop: 50 }}>QRCode URL: {window.location.href}</h5>
+    </div>
+  </div>
+);
 
 function App() {
-  const modelViewer = {
-    backgroundColor: "#eee",
-    overflowX: "hidden",
-    posterColor: "#eee",
-    width: 400,
-    height: 300,
-    borderRadius: 10,
-    marginTop: 40,
-    marginLeft: 40,
-  }
+  const isMobile = /iPhone|webOS|Android|iPad|iPod|BlackBerry|Windows Phone/i.test(navigator.userAgent);
 
-  if( navigator.userAgent.match(/iPhone/i)
-    || navigator.userAgent.match(/webOS/i)
-    || navigator.userAgent.match(/Android/i)
-    || navigator.userAgent.match(/iPad/i)
-    || navigator.userAgent.match(/iPod/i)
-    || navigator.userAgent.match(/BlackBerry/i)
-    || navigator.userAgent.match(/Windows Phone/i)
-  ) 
-  {
-    return (
-      <div className={App}>
-        <model-viewer className="modelviewer" style={modelViewer} src={hand} /* "https://github.com/RiteshK-611/webxr-ar/blob/main/assets/sofa.gltf" */
-          ios-src={chair}
-          alt="A 3D model of an astronaut"
-          ar
-          auto-rotate
-          camera-controls> 
-
-          <button slot="ar-button" className="arbutton">
-            View in your space
-          </button>
-        </model-viewer> 
-      </div>
-    );
-  }
-  else {
-    return (
-      <div className={App}>
-        <model-viewer className="modelviewer" style={modelViewer} src={hand}
-          alt="A 3D model of an astronaut"
-          ar
-          auto-rotate
-          camera-controls> 
-        </model-viewer>
-        <div style={{display: 'flex', marginLeft: 50}}>
-          <QRCode 
-            id="1234"
-            value={window.location.href}
-            size={128}
-            bgColor={'#ffffff'}
-            fgColor={'#000000'}
-            level={'H'}
-            includeMargin={true}
-          />
-          <h5 style={{marginTop: 50}}>QRCode URL: {window.location.href}</h5>
-        </div>
-      </div>
-    );
-  }
-
+  return (
+    <>
+      {isMobile ? (
+        <ModelWithQRCode src={cake} iosSrc={chair} />
+      ) : (
+        <>
+          <ModelWithQRCode src={cake} />
+          <ModelWithQRCode src={minum} />
+        </>
+      )}
+    </>
+  );
 }
 
 export default App;
