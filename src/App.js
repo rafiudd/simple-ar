@@ -1,17 +1,30 @@
+// src/RootApp.jsx
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import MainPage from './HomePage';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import HomePage from './HomePage';
 import OrderPage from './OrderPage';
 import OrderSuccess from './OrderSuccess';
+import AdminLayout from './admin/AdminLayout';
+import LoginPage from './admin/LoginPage';
+import ProductsPage from './admin/ProductsPage';
+import OrdersPage from './admin/OrdersPage';
 
 export default function RootApp() {
   return (
-    <Router>
+    <BrowserRouter>
       <Routes>
-        <Route path="/" element={<MainPage />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/order" element={<OrderPage />} />
         <Route path="/order/success/:id" element={<OrderSuccess />} />
+
+        {/* Admin */}
+        <Route path="/admin/login" element={<LoginPage />} />
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<Navigate to="products" replace />} />
+          <Route path="products" element={<ProductsPage />} />
+          <Route path="orders" element={<OrdersPage />} />
+        </Route>
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 }
