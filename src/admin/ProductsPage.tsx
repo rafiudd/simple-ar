@@ -210,7 +210,7 @@ export default function ProductsPage() {
                 >
                   {r.model ? (
                     <a href={r.model} target="_blank" rel="noreferrer">
-                      {r.model}
+                      {r.model.split('/').pop()}
                     </a>
                   ) : (
                     '-'
@@ -227,7 +227,7 @@ export default function ProductsPage() {
                 >
                   {r.ios ? (
                     <a href={r.ios} target="_blank" rel="noreferrer">
-                      {r.ios}
+                      {r.ios.split('/').pop()}
                     </a>
                   ) : (
                     '-'
@@ -310,7 +310,7 @@ export default function ProductsPage() {
             <label>Model (GLB)</label>
             <div style={{ display: 'grid', gap: 8, marginBottom: 16 }}>
               <input
-                value={form.model}
+                value={form.model.split('/').pop()}
                 onChange={(e) => setForm({ ...form, model: e.target.value })}
                 placeholder={modelUploading ? 'Mengupload...' : 'URL file GLB'}
                 readOnly
@@ -322,7 +322,7 @@ export default function ProductsPage() {
             <label>iOS (USDZ)</label>
             <div style={{ display: 'grid', gap: 8, marginBottom: 16 }}>
               <input
-                value={form.ios}
+                value={form.ios.split('/').pop()}
                 onChange={(e) => setForm({ ...form, ios: e.target.value })}
                 placeholder={iosUploading ? 'Mengupload...' : 'URL file OSDZ'}
                 readOnly
