@@ -5,6 +5,7 @@ import { authService } from './authService';
 
 class MenuService {
   private api: AxiosInstance;
+  private UPLOAD_URL = 'https://muddy-wildebeest-rafiudd-7daec76d.koyeb.app/upload';
 
   constructor() {
     this.api = axios.create({
@@ -80,7 +81,7 @@ class MenuService {
     formData.append('filename', file.name);
 
     try {
-      const res = await fetch('/upload', {
+      const res = await fetch(this.UPLOAD_URL, {
         method: 'POST',
         body: formData,
       });
