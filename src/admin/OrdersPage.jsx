@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { deleteOrder, orderService, updateStatusOrder } from '../services/orderService';
 
-const STATUS = ['Diterima', 'Sedang Diproses', 'Siap Diambil', 'Selesai'];
+const STATUS = ['Sedang Diproses', 'Selesai'];
 
 export default function OrdersPage() {
   const [rows, setRows] = useState([]);
-  const [activeTab, setActiveTab] = useState('Diterima');
+  const [activeTab, setActiveTab] = useState('Semua');
 
   const load = async () => {
     try {
