@@ -5,7 +5,7 @@ import { authService } from './authService';
 
 class MenuService {
   private api: AxiosInstance;
-  private UPLOAD_URL = 'https://muddy-wildebeest-rafiudd-7daec76d.koyeb.app/upload';
+  private UPLOAD_URL = 'http://localhost:8000/upload';
 
   constructor() {
     this.api = axios.create({
